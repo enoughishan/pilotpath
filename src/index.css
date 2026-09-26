@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts */
+@import "@fontsource/barlow/400.css";
+@import "@fontsource/barlow/600.css";
+@import "@fontsource/barlow-semi-condensed/600.css";
+@import "@fontsource/barlow-semi-condensed/700.css";
+@import "@fontsource/source-serif-4/400.css";
+@import "@fontsource/source-serif-4/600.css";
+@import "@fontsource/noto-sans-devanagari/400.css";
+@import "@fontsource/noto-sans-devanagari/600.css";
+
+@import "./design/tokens.css";
+
+/* ─────────────────────────────────────────────────── */
+/*  GLOBAL SHADOW SCALE                                */
+/* ─────────────────────────────────────────────────── */
+@theme {
+  --shadow-xs:  var(--shadow-xs);
+  --shadow-sm:  var(--shadow-sm);
+  --shadow-md:  var(--shadow-md);
+  --shadow-lg:  var(--shadow-lg);
+  --shadow-xl:  var(--shadow-xl);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  AMBIENT BODY GLOW                                  */
+/* ─────────────────────────────────────────────────── */
+body {
+  background-image:
+    radial-gradient(ellipse 900px 500px at 80% -5%, var(--glow-a), transparent 65%),
+    radial-gradient(ellipse 700px 500px at -5% 95%, var(--glow-b), transparent 65%),
+    radial-gradient(ellipse 600px 400px at 50% 50%, var(--glow-c), transparent 70%);
+  background-attachment: fixed;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  GRADIENT UTILITIES                                 */
+/* ─────────────────────────────────────────────────── */
+.grad-brand { background: var(--grad-brand); }
+.grad-hero  { background: var(--grad-hero); }
+.grad-go    { background: var(--grad-go); }
+.grad-marker { background: var(--grad-marker); }
+
+.text-gradient {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  CARD PATTERNS                                      */
+/* ─────────────────────────────────────────────────── */
+
+/* Standard surface card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Elevated / interactive card */
+.card-hover {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--line-strong);
+}
+
+.card-hover:active {
+  transform: translateY(0px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Glass / frosted card */
+.glass {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(17,24,39,0.80);
+  border-color: rgba(255,255,255,0.07);
+}
+
+/* Inset / sunken panel */
+.panel-inset {
+  background: var(--sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  BUTTON BASE PATTERNS                               */
+/* ─────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-primary);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: var(--primary-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px -4px rgba(37,99,235,0.40);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast),
+    border-color var(--duration-fast),
+    color var(--duration-fast);
+}
+
+.btn-ghost:hover {
+  background: var(--sunken);
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  STATUS BADGES                                      */
+/* ─────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badge-go     { background: var(--go-tint);     color: var(--go);     }
+.badge-stop   { background: var(--stop-tint);   color: var(--stop);   }
+.badge-marker { background: var(--marker-tint); color: var(--marker); }
+.badge-blue   { background: var(--primary-tint);color: var(--primary);}
+.badge-accent { background: var(--accent-tint); color: var(--accent); }
+
+/* ─────────────────────────────────────────────────── */
+/*  SECTION DIVIDER                                    */
+/* ─────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--line);
+  border: none;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  STAT TILE                                          */
+/* ─────────────────────────────────────────────────── */
+.stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--duration-base);
+}
+
+.stat-tile:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  TABLE PATTERN                                      */
+/* ─────────────────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.data-table thead tr {
+  background: var(--sunken);
+  border-bottom: 1px solid var(--line);
+}
+
+.data-table th {
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background var(--duration-fast);
+}
+
+.data-table tbody tr:hover {
+  background: var(--sunken);
+}
+
+.data-table td {
+  padding: 0.75rem 0.875rem;
+  color: var(--ink);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  STEP / STAGE NUMBER CHIP                           */
+/* ─────────────────────────────────────────────────── */
+.stage-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  flex-shrink: 0;
+}
+
+.stage-chip-done    { background: var(--primary); color: white; }
+.stage-chip-current { background: var(--grad-brand); color: white; box-shadow: var(--shadow-primary); }
+.stage-chip-pending { background: var(--sunken); color: var(--ink-3); border: 1px solid var(--line); }
+
+/* ─────────────────────────────────────────────────── */
+/*  FOCUS / ACCESSIBILITY                              */
+/* ─────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: var(--primary-muted);
+  color: var(--primary-strong);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  SCROLLBARS                                         */
+/* ─────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--line-strong);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ink-3);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  SMOOTH TRANSITIONS ON INTERACTIVE ELEMENTS         */
+/* ─────────────────────────────────────────────────── */
+:where(button, a[href]) {
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  REDUCED MOTION                                     */
+/* ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
