@@ -1,29 +1,14 @@
 # Pilot Bridge
 
-**Pilot Bridge** is a frontend-only prototype of a platform that helps government departments find, test, pay, and scale startup solutions across a structured 10-stage innovation lifecycle.
+**Pilot Bridge**  platform that helps government departments find, test, pay, and scale startup solutions across a structured 10-stage innovation lifecycle.
 
-All data is sample data. All server behaviour is simulated in the browser. The logic — rules, scoring, matching, clocks, documents, audit hashing — is real and runs client-side.
+ All server behaviour is simulated in the browser. The logic — rules, scoring, matching, clocks, documents, audit hashing — is real and runs client-side.
 
-> **Honesty label:** This is a prototype with sample data. Thresholds, names, and figures are illustrative. Confirm against your current procurement rules before use.
+> **Honesty label:** This is a prototype Thresholds, names, and figures are illustrative. Confirm against your current procurement rules before use.
 
 ---
 
-## Quick start
 
-```bash
-# Clone and install
-git clone <repo-url>
-cd pilotpath
-npm install
-
-# Start the dev server
-npm run dev
-
-# Open in browser
-# http://localhost:5173
-```
-
-No backend, no API keys, no Docker. Everything runs offline in IndexedDB + Service Worker mocks.
 
 ---
 
